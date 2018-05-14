@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SymbolCorrelatorApp.iml" filepath="$PROJECT_DIR$/SymbolCorrelatorApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SymbolsCorrelatorApp.iml" filepath="$PROJECT_DIR$/SymbolsCorrelatorApp.iml" />
     </modules>
   </component>
 </project>
