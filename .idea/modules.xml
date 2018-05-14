@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/TestTema.iml" filepath="$PROJECT_DIR$/TestTema.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SymbolCorrelatorApp.iml" filepath="$PROJECT_DIR$/SymbolCorrelatorApp.iml" />
     </modules>
   </component>
 </project>

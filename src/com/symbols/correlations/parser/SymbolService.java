@@ -14,7 +14,7 @@ import static com.symbols.correlations.parser.worker.LineParser.parseDateFromLin
 
 class SymbolService {
 
-    SymbolService(final Scanner scanner) {
+    SymbolService(final Scanner scanner, final String lastXMonth) {
 
         final SymbolDataStorage symbolDataStorage = new SymbolDataStorage();
         final List<SymbolDataLineBean> symbolDataLineBeanList = new ArrayList<>();
@@ -31,8 +31,6 @@ class SymbolService {
                 symbolDataLineBean.setEntryDay(parseDateFromLine(checkIfCellIsAvailable(line.get(6))));
                 symbolDataLineBean.setExitDay(parseDateFromLine(checkIfCellIsAvailable(line.get(15))));
 
-                //System.out.println(symbolDataLineBean.toString());
-
                 symbolDataLineBeanList.add(symbolDataLineBean);
             }
 
@@ -40,7 +38,7 @@ class SymbolService {
 
         symbolDataStorage.setSymbolDataStorage(symbolDataLineBeanList);
 
-        new SymbolCorrelator(symbolDataStorage);
+        new SymbolCorrelator(symbolDataStorage, lastXMonth);
 
     }
 
