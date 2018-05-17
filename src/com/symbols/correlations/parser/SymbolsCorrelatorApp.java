@@ -10,20 +10,28 @@ import java.util.Scanner;
 public class SymbolsCorrelatorApp {
 
     public static void main(final String[] args) throws Exception {
-        final Scanner scanner = new Scanner(getPositionsFile());
-        new SymbolService(scanner, args[0].replace("lastXMonth=", ""));
-        scanner.close();
+        final Scanner positionsTableScanner = new Scanner(getPositionsFile());
+        final Scanner correlationTableScanner = new Scanner(getCorrelatorTableFile());
+        new SymbolService(positionsTableScanner, correlationTableScanner, args[0].replace("lastXMonth=", ""));
+        positionsTableScanner.close();
     }
 
     private static File getPositionsFile() {
-        final String filePathString = "positionsTable.csv";
-        final Path path = Paths.get(filePathString);
-        File positionsFile = new File(filePathString);
+        return getCSVFile("positionsTable.csv");
+    }
+
+    private static File getCorrelatorTableFile() {
+        return getCSVFile("correlation_table_full.csv");
+    }
+
+    private static File getCSVFile(final String fileName) {
+        final Path path = Paths.get(fileName);
+        File correlatorTableFile = new File(fileName);
         if (!Files.exists(path)) {
             final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-            positionsFile = new File(Objects.requireNonNull(classLoader.getResource(filePathString)).getFile());
+            correlatorTableFile = new File(Objects.requireNonNull(classLoader.getResource(fileName)).getFile());
         }
-        return positionsFile;
+        return correlatorTableFile;
     }
 
 }
