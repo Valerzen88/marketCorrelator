@@ -11,7 +11,7 @@ import static com.symbols.correlations.parser.worker.LineComparator.compareLines
 public class SymbolCorrelator {
 
     public SymbolCorrelator(final SymbolDataStorage symbolDataStorage, final SymbolCorrelatorTableStorage symbolCorrelatorTableStorage, final String lastXMonth) {
-        compareLines(symbolDataStorage, lastXMonth);
+        compareLines(symbolDataStorage, lastXMonth, symbolCorrelatorTableStorage);
 
         final List<String> firstLine = new ArrayList<>();
         final List<String> otherLines = new ArrayList<>();
