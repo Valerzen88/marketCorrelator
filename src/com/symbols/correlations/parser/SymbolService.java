@@ -5,6 +5,7 @@ import com.symbols.correlations.parser.data.SymbolDataLineBean;
 import com.symbols.correlations.parser.data.SymbolDataStorage;
 import com.symbols.correlations.parser.worker.SymbolCorrelator;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,13 +17,14 @@ import static com.symbols.correlations.parser.worker.LineParser.parseDateFromLin
 
 class SymbolService {
 
-    SymbolService(final Scanner positionsTableScanner, Scanner correlationTableScanner, final String lastXMonth) {
+    SymbolService(final Scanner positionsTableScanner, Scanner correlationTableScanner,
+                  final String lastXMonth, final String startDate, final String endDate, final boolean useMonthPeriod) throws ParseException {
 
         final SymbolDataStorage symbolDataStorage = fillSymbolDataStorage(positionsTableScanner);
 
         final SymbolCorrelatorTableStorage symbolCorrelatorTableStorage = fillSymbolCorrelationTableStorage(correlationTableScanner);
 
-        new SymbolCorrelator(symbolDataStorage, symbolCorrelatorTableStorage, lastXMonth);
+        new SymbolCorrelator(symbolDataStorage, symbolCorrelatorTableStorage, lastXMonth, startDate, endDate, useMonthPeriod);
 
     }
 
