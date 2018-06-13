@@ -13,7 +13,7 @@ public class SymbolCorrelator {
     public SymbolCorrelator(final SymbolDataStorage symbolDataStorage, final SymbolCorrelatorTableStorage symbolCorrelatorTableStorage, final String lastXMonth) {
         compareLines(symbolDataStorage, lastXMonth, symbolCorrelatorTableStorage);
 
-        final List<String> firstLine = new ArrayList<>();
+        /*final List<String> firstLine = new ArrayList<>();
         final List<String> otherLines = new ArrayList<>();
         firstLine.add("FirstLine: ");
         symbolCorrelatorTableStorage.getCorrelatorTableStorage()
@@ -26,6 +26,6 @@ public class SymbolCorrelator {
                     }
                 });
         System.out.println(firstLine.toString());
-        otherLines.forEach(System.out::println);
+        otherLines.forEach(System.out::println);*/
     }
 }

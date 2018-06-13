@@ -38,11 +38,14 @@ public interface LineComparator {
                 } else {
                     final String correlationSymbolNameFirst = previousPosition.getSymbolName();
                     final String correlationSymbolNameSecond = currentPosition.getSymbolName();
+                    final int correlationFactorSymbolArrayIDFromFirstLine = getCorrelationFactorSymbolArrayIDFromFirstLine(tableCorrelationFirstLine, correlationSymbolNameFirst);
 
-                    //final String correlationFactor = getCorrelationFactorSymbolArrayIDFromFirstLine(tableCorrelationFirstLine, currentPosition.getSymbolName());
-                    System.out.println("Position with index=" + i + " for symbol=" + currentPosition.getSymbolName()
-                            + " should be proofed for correlation. Correlation factor is " + "null");
-                    //correlationFactor);
+                    final String correlationFactor = getCorrelationFactorSymbolArrayIDFromOtherLines(
+                            tableCorrelationOtherLines, correlationSymbolNameSecond, correlationFactorSymbolArrayIDFromFirstLine);
+                    if(!correlationFactor.equals("")) {
+                        System.out.println("Position with index=" + i + " for symbol=" + correlationSymbolNameSecond
+                                + " should be proofed for correlation. Correlation factor is " + correlationFactor);
+                    }
                 }
             }
         }
@@ -68,13 +71,15 @@ public interface LineComparator {
         return -1;
     }
 
-    static int getCorrelationFactorSymbolArrayIDFromOtherLines(final List<List<String>> tableCorrelationLine, final String symbolName) {
-        for (int i = 0; i < tableCorrelationLine.size(); i++) {
-            if (tableCorrelationLine.get(0).equals(symbolName)) {
-                return i;
+    static String getCorrelationFactorSymbolArrayIDFromOtherLines(final List<List<String>> tableCorrelationLine, final String symbolName, final int indexFromFirstLine) {
+        if (indexFromFirstLine > -1) {
+            for (List<String> aTableCorrelationLine : tableCorrelationLine) {
+                if (aTableCorrelationLine.get(0).equals(symbolName)) {
+                    return aTableCorrelationLine.get(indexFromFirstLine);
+                }
             }
         }
-        return -1;
+        return "";
     }
 
     static List<String> getTableCorrelationFirstLine(final SymbolCorrelatorTableStorage symbolCorrelatorTableStorage) {
